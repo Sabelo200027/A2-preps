@@ -1,4 +1,4 @@
-import { List, Datagrid, TextField, EmailField, Show, SimpleShowLayout, } from "react-admin";
+import { List, Datagrid, TextField, EmailField, Show, SimpleShowLayout, Edit, TextInput, SimpleForm, Create } from "react-admin";
 
 export const UserList = () => (
     <List>
@@ -28,4 +28,32 @@ export const UserShow = () => (
             <TextField source="company.name" />
         </SimpleShowLayout>
     </Show>
+);
+
+export const UserEdit = () => (
+    <Edit>
+        <SimpleForm>
+            <TextInput source="id" />
+            <TextInput source="name" />
+            <TextInput source="username" />
+            <TextInput source="email" />
+            <TextInput source="address.street" />
+            <TextInput source="phone" />
+            <TextInput source="website" />
+            <TextInput source="company.name" />
+        </SimpleForm>
+    </Edit>
+);
+export const UserCreate = () => (
+    <Create>
+        <SimpleForm>
+            <TextInput source="name" />
+            <TextInput source="username" />
+            <TextInput source="email" />
+            <TextInput source="address.street" />
+            <TextInput source="phone" />
+            <TextInput source="website" />
+            <TextInput source="company.name" />
+        </SimpleForm>
+    </Create>
 );
