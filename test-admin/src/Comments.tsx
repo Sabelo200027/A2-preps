@@ -1,4 +1,4 @@
-import { Datagrid, EmailField, List, ReferenceField, TextField, Edit, ReferenceInput, SimpleForm, TextInput, Create} from "react-admin";
+import { Datagrid, EmailField, List, ReferenceField, TextField, Edit, ReferenceInput, SimpleForm, TextInput, Create, Show, SimpleShowLayout} from "react-admin";
 
 export const CommentList = () => (
     <List>
@@ -12,17 +12,6 @@ export const CommentList = () => (
     </List>
 );
 
-export const CommentEdit = () => (
-    <Edit>
-        <SimpleForm>
-            <ReferenceField source="userId" reference="users" />
-            <TextField source="id" />
-            <TextField source="name" />
-            <EmailField source="email" />
-            <TextField source="body" />
-        </SimpleForm>
-    </Edit>
-);
 
 export const CommentCreate = () => (
     <Create>
@@ -32,4 +21,16 @@ export const CommentCreate = () => (
             <TextInput source="body" />
         </Datagrid>
     </Create>
+);
+
+export const CommentShow = () => (
+    <Show>
+        <SimpleShowLayout>
+            <ReferenceField source="userId" reference="users" />
+            <TextField source="id" />
+            <TextField source="name" />
+            <EmailField source="email" />
+            <TextField source="body" />
+        </SimpleShowLayout>
+    </Show>
 );
