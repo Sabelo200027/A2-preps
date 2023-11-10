@@ -1,20 +1,27 @@
-import { List, Datagrid, TextField, ReferenceField, EditButton, Edit, Create, SimpleForm, ReferenceInput, TextInput } from "react-admin";
+import { List, Datagrid, TextField, ReferenceField,EditButton, Edit, Create, SimpleForm, ReferenceInput, TextInput, Show, SimpleShowLayout, ShowButton} from "react-admin";
+import { useRecordContext } from "react-admin";
 
-export const PostList = () => (
-    <List>
-        <Datagrid>
+export const PostList = () => <List filters={postFilters}>//
+        <Datagrid rowClick="edit">
             <TextField source="id" />
-            <ReferenceField source="userId" reference="users" link="show"/>
+            <ReferenceField source="userId" reference="users" />
             <TextField source="title" />
             <EditButton/>
+            <ShowButton/>
         </Datagrid>
-    </List>
-);
+    </List>;
+
+
+const PostTitle = () => {
+    const record = useRecordContext();
+    return <span>Post {record ?`"${record.title}"`:''}</span>;
+
+};
 
 export const PostEdit = () => (
-    <Edit>
+    <Edit title={<PostTitle/>}>
         <SimpleForm>
-            <ReferenceInput source="userId" reference="users" link="show" />
+            <ReferenceInput source="userId" reference="users" />
             <TextInput source="id" />
             <TextInput source="title" />
             <TextInput source="body" />
@@ -25,9 +32,26 @@ export const PostEdit = () => (
 export const PostCreate = () => (
     <Create>
         <SimpleForm>
-            <ReferenceInput source="userId" reference="users" link="show" />
+            <ReferenceInput source="userId" reference="users"  />
             <TextInput source="title" />
             <TextInput source="body" />
         </SimpleForm>
     </Create>
 );
+
+export const PostShow = () => (
+    <Show>
+        <SimpleShowLayout>
+            <ReferenceInput source="userId" reference="users" />
+            <TextInput source="id" />
+            <TextInput source="title" />
+            <TextInput source="body" />
+        </SimpleShowLayout>
+    </Show>
+);
+
+const postFilters = [
+    <TextInput source="q" label="Search" alwaysOn />,
+    <ReferenceInput source="userId" label="User" reference="users" />,
+];
+
